@@ -13,29 +13,22 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-
+  payload: any;
+  modalData
   constructor(private dialog: MatDialog) {}
 
   openDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
-      data: {
-     
-        
-      },
+      data: {},
     });
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        snack.dismiss();
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
-        snack.dismiss();
-        this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
-          duration: 2000,
-        });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.payload = result.payload;
+        this.modalData = result.formData;
+        console.log(result.payload);
       }
+      
     });
   }
 }
-

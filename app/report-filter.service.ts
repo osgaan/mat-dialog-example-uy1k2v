@@ -30,8 +30,9 @@ export class ReportFilterService {
       payload['startDate'] = data.startDate;
     }
 
-    if (data.assistantId && data.assistantId.length > 0) {
-      payload['assistantId'] = data.assistantId.map((assistant) => assistant);
+    if (data.status && data.status.length > 0) {
+      payload['status'] = data.status.map((status) => status);
     }
+    return payload;
   }
 }

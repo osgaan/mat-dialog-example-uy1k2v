@@ -34,6 +34,11 @@ export class ConfirmationDialog {
   }
 
   onConfirmClick(): void {
-    this.dialogRef.close(true);
+    const data = this.form.getRawValue();
+    console.log(data);
+    this.dialogRef.close({
+      payload: this._reportFilterService.setupPayload(data),
+      formData: Object.assign({}, data),
+    });
   }
 }
