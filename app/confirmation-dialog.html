@@ -1,0 +1,34 @@
+<mat-dialog-content>
+<form [formGroup]="form">
+<div class="pb-16 px-16 w-100-p" fxLayout="column" fxLayoutAlign="start stretch">
+		<div class="pl-8 w-100-p" fxLayout="row" fxLayoutAlign="space-between start">
+				<mat-form-field appearance="outline" class="no_padding" fxFlex="49">
+						<mat-label>Select Status</mat-label>
+						<mat-select formControlName="status" multiple required>
+							<mat-option
+								*ngFor="let element of statusList"
+								[value]="element.value"
+								>{{element.status}}
+							</mat-option>
+						</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="pl-8 w-100-p" fxLayout="row" fxLayoutAlign="space-between start">
+			<mat-form-field appearance="outline" class="no_padding" fxFlex="49">
+				<input (click)="sessionDateStartDatePicker.open()"
+							 [matDatepicker]="sessionDateStartDatePicker"
+							 formControlName="startDate"
+							 matInput
+							 required
+							 placeholder="Start Date">
+				<mat-datepicker-toggle [for]="sessionDateStartDatePicker" matSuffix></mat-datepicker-toggle>
+				<mat-datepicker #sessionDateStartDatePicker></mat-datepicker>
+			</mat-form-field>
+		</div>
+</div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+	<button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">Apply Filter</button>
+	<button mat-raised-button mat-dialog-close tabindex="-1">Clear Filter</button>
+</mat-dialog-actions>
